@@ -9,13 +9,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
+import {hu} from 'date-fns/locale/index.js';
 
 export const name = 'datepicker-int';
 
 export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
-    formatString="dd.MM.yyyy"
+    formatString="EEEE d"
+    locale={hu}
     placeholder="dd.mm.yyyy - dd.mm.yyyy"
     highlightedDate={new Date('March 10, 2019')}
     range

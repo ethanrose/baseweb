@@ -70,14 +70,17 @@ export default class Datepicker extends React.Component<
     if (!date) {
       return '';
     } else if (Array.isArray(date)) {
-      return date.map(day => formatDate(day, formatString)).join(' - ');
+      return date
+        .map(day => formatDate(day, formatString, this.props.locale))
+        .join(' - ');
     } else {
-      return formatDate(date, formatString);
+      return formatDate(date, formatString, this.props.locale);
     }
   }
 
   formatDisplayValue(date: ?Date | Array<Date>) {
-    const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
+    let formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
+    formatDisplayValue = formatDisplayValue.bind(this);
     return formatDisplayValue(date, this.props.formatString || 'yyyy/MM/dd');
   }
 
